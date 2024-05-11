@@ -24,17 +24,6 @@ public class Book {
     @Column(columnDefinition = "TEXT")
     private String introduction;
 
-    // Constructors
-    public Book() {
-    }
-
-    public Book(String isbn, String name, String author, String introduction) {
-        this.isbn = isbn;
-        this.name = name;
-        this.author = author;
-        this.introduction = introduction;
-    }
-
     // Getters and Setters
     public String getIsbn() {
         return isbn;

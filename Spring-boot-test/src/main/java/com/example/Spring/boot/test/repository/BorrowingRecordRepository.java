@@ -10,7 +10,8 @@ import java.util.List;
 
 @Repository
 public interface BorrowingRecordRepository extends JpaRepository<BorrowingRecord, Integer> {
-    // 查找特定庫存的最後一筆未歸還的借閱紀錄
+    // findByUser_userId is a query method that finds all borrowing records by
+    // userID
     List<BorrowingRecord> findByUser_userId(int userId);
 
     BorrowingRecord findByUser_userIdAndInventory_inventoryId(int userId, int inventoryId);

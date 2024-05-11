@@ -29,6 +29,7 @@ public class BookController {
     @Autowired
     private BorrowingRecordRepository borrowingRecordRepository;
 
+    // show all books in the DB
     @GetMapping("/book_inventory")
     public String bookInventory(Model model, HttpSession session) {
         Integer userId = (Integer) session.getAttribute("userId");
@@ -39,8 +40,10 @@ public class BookController {
         return "book_inventory";
     }
 
+    // borrow a book logic
     @PostMapping("/borrow_book")
     public String borrowBook(@RequestParam int inventoryId, HttpSession session) {
+        // RequestParam is used to get the value of the parameter from the html form
         Integer userId = (Integer) session.getAttribute("userId");
         if (userId == null) {
             return "redirect:/user_login"; // Redirect to login if not logged in
@@ -52,6 +55,7 @@ public class BookController {
         return "redirect:/book_inventory";
     }
 
+    // show all books that user borrowed
     @GetMapping("/book_borrowed")
     public String showBorrowedBooks(HttpSession session, Model model) {
         Integer userId = (Integer) session.getAttribute("userId");
@@ -64,6 +68,7 @@ public class BookController {
 
     }
 
+    // return a book logic
     @PostMapping("/return_book")
     public String returnBook(@RequestParam int borrowingId, HttpSession session) {
         Integer userId = (Integer) session.getAttribute("userId");

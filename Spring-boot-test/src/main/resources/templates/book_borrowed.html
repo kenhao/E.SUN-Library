@@ -18,6 +18,7 @@
         <tr>
           <th>Record Id</th>
           <th>Inventory Id</th>
+          <th>Book Name</th>
           <th>Borrowing Time</th>
           <th>Return Time</th>
           <th>Status</th>
@@ -27,6 +28,7 @@
         <tr th:each="record : ${allRecords}">
           <td th:text="${record.borrowingId}"></td>
           <td th:text="${record.inventory.inventoryId}"></td>
+          <td th:text="${record.inventory.book.name}"></td>
           <td th:text="${record.borrowingTime}"></td>
           <td th:text="${record.returnTime}"></td>
           <td

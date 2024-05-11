@@ -25,6 +25,7 @@ public class BorrowingRecordService {
     @Autowired
     private InventoryRepository inventoryRepository;
 
+    // Create a borrowing record
     public void createBorrowingRecord(int userId, int inventoryId) {
         BorrowingRecord record = new BorrowingRecord();
         User user = userRepository.findById(userId)
@@ -43,12 +44,13 @@ public class BorrowingRecordService {
         return borrowingRecordRepository.findByUser_userId(userId);
     }
 
+    // Update borrowing record
     public void updateBorrowingRecord(int userId, int inventoryId) {
         BorrowingRecord record = borrowingRecordRepository.findByUser_userIdAndInventory_inventoryId(userId,
                 inventoryId);
         if (record != null) {
             record.setReturnTime(new Timestamp(System.currentTimeMillis()));
-            borrowingRecordRepository.save(record); // 更新借閱紀錄 in database
+            borrowingRecordRepository.save(record); // update the record
         }
     }
 }
