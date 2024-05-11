@@ -1,7 +1,9 @@
 # E.SUN-Library-project
 E.SUN Library 提供了一個完整的圖書管理系統，使用者可以進行書籍借閱和歸還
 
+
 ## 使用流程
+(系統存放在spring-boot-test資料夾內)
 
 * **Index**：[http://localhost:8080/](http://localhost:8080/) 進入首頁。
 
