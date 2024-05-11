@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Book Inventory</title>
+    <h1 th:text="'Hello, ' + ${session.userName} + '!'">Hello, User!</h1>
+    <button onclick="location.href='logout'">Logout</button>
+    <button onclick="location.href='book_inventory'">Book Inventory</button>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.min.css"
+    />
+  </head>
+  <body>
+    <h2>Book Borrowed</h2>
+
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Record Id</th>
+          <th>Inventory Id</th>
+          <th>Borrowing Time</th>
+          <th>Return Time</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="record : ${allRecords}">
+          <td th:text="${record.borrowingId}"></td>
+          <td th:text="${record.inventory.inventoryId}"></td>
+          <td th:text="${record.borrowingTime}"></td>
+          <td th:text="${record.returnTime}"></td>
+          <td
+            th:if="${record.inventory.status} == '可借閱' and ${record.returnTime} != null"
+          >
+            已歸還
+          </td>
+          <td
+            th:unless="${record.inventory.status} == '可借閱' and ${record.returnTime} != null"
+          >
+            已借閱
+          </td>
+          <td>
+            <form
+              th:action="@{/return_book}"
+              th:method="post"
+              th:if="${record.inventory.status == '已借閱'}"
+            >
+              <input
+                type="hidden"
+                name="borrowingId"
+                th:value="${record.borrowingId}"
+              />
+              <button type="submit">歸還</button>
+            </form>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>User Registration</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/water.css@2/out/light.min.css"
+    />
+  </head>
+
+  <body>
+    <h2>User Registeration</h2>
+    <button onclick="location.href='user_login'">返回登入</button>
+
+    <form action="/register_process" method="post">
+      <label for="phone_number">Phone Number:</label>
+      <input type="text" id="phone_number" name="phone_number" required /><br />
+
+      <label for="user_name">Username:</label>
+      <input type="text" id="user_name" name="user_name" required /><br />
+
+      <label for="password_hash">Password:</label>
+      <input
+        type="password"
+        id="password_hash"
+        name="password_hash"
+        required
+      /><br />
+
+      <label for="confirm_password">Confirm Password:</label>
+      <input
+        type="password"
+        id="confirm_password"
+        name="confirm_password"
+        required
+      /><br />
+
+      <input type="submit" value="Register" />
+    </form>
+    <div th:if="${error}">
+      <p style="color: red" th:text="${error}"></p>
+    </div>
+  </body>
+</html>
